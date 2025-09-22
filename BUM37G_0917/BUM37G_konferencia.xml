@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<konferencia>
+    <cím>Informatikai Konferencia 2025</cím>
+    <dátum>2025-11-12</dátum>
+    <helyszín>Debreceni Egyetem</helyszín>
+    
+    <előadó>
+        <név>Dr. Kovács János</név>
+        <lakcím>4026 Debrecen, Egyetem tér 1.</lakcím>
+        <adószám>12345678-1-42</adószám>
+    </előadó>
+
+    <hallgatók>
+        <hallgató>
+            <név>Nagy Péter</név>
+            <lakcím>4032 Debrecen, Kassai út 26.</lakcím>
+        </hallgató>
+        <hallgató>
+            <név>Kiss Anna</név>
+            <lakcím>4024 Debrecen, Piac utca 10.</lakcím>
+        </hallgató>
+        <hallgató>
+            <név>Tóth László</név>
+            <lakcím>4030 Debrecen, Hatvan utca 5.</lakcím>
+        </hallgató>
+    </hallgatók>
+</konferencia>

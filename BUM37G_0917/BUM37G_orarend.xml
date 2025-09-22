@@ -22,7 +22,7 @@
         <oktato>Nagy Péter</oktato>
         <szak>Mérnökinformatikus</szak>
     </ora>
-    <ora id="h3" tipus="gyakorlat">
+    <ora id="h4" tipus="gyakorlat">
         <targy>Mobil programozási alapok</targy>
         <idopont nap="hetfo" tol="18" ig="20" />
         <helyszin>B2-105</helyszin>

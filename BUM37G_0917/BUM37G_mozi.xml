@@ -10,11 +10,4 @@
         </szinesz>
         <iro id="trv_4xm_2jb" />
     </film>
-    
-    <film id="abc_xyz_123" mufaj="drama">
-        <rendezo id="rend1_456" nev="Kovács János" />
-        <rendezo id="rend2_789" nev="Nagy Péter" />
-        <iro id="iro1_321" nev="Szabó Anna" />
-        <iro id="iro2_654" nev="Tóth Márta" />
-    </film>
 </mozi>
