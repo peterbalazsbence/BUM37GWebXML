@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- tipusok -->
+  <xs:simpleType name="sajatKodTipus">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]{1}[0-9]{3}" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="sajatNevTipus">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="sajatEletkorTipus">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0"/>
+      <xs:maxInclusive value="120"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="sajatSzovegTipus">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="sajatPenzTipus">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- struktura -->
+  <xs:element name="Ettermek">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Etterem" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Nev" type="sajatNevTipus"/>
+              <xs:element name="Cim">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Varos" type="sajatNevTipus"/>
+                    <xs:element name="Utca" type="sajatNevTipus"/>
+                    <xs:element name="Hazszam" type="sajatSzovegTipus"/>
+                    <xs:element name="Csillag" type="xs:integer"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="EKOD" type="sajatKodTipus" use="required"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

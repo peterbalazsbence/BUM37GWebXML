@@ -1,0 +1,73 @@
+<Ettermek>
+  <Etterem EKod="ET001">
+    <Nev>Fő utcai étterem</Nev>
+    <Cim>
+      <Varos>Budapest</Varos>
+      <Utca>Fő utca</Utca>
+      <Hazszam>12</Hazszam>
+      <Csillag>5</Csillag>
+    </Cim>
+    
+    <Foszakacsok>
+      <Foszakacs FKod="FS001">
+        <Nev>Kovács András</Nev>
+        <Eletkor>42</Eletkor>
+        <Vegzettseg>Mesterszakács</Vegzettseg>
+      </Foszakacs>
+    </Foszakacsok>
+    
+    <Szakacsok>
+      <Szakacs SKod="SZ001">
+        <Nev>Nagy István</Nev>
+        <Reszleg>Pizzéria</Reszleg>
+        <Vegzettseg>Szakács OKJ</Vegzettseg>
+      </Szakacs>
+      <Szakacs SKod="SZ002">
+        <Nev>Nagy Péter</Nev>
+        <Reszleg>Grill</Reszleg>
+        <Vegzettseg>Felsőfok</Vegzettseg>
+      </Szakacs>
+    </Szakacsok>
+    
+    <Gyakornokok>
+      <Gyakornok GYKod="GY001">
+        <Nev>Varga Tamás</Nev>
+        <Gyakorlat>
+          <Kezdete>2025-09-01</Kezdete>
+          <Idotartam honap="3"/>
+        </Gyakorlat>
+        <Muszak>Nappali</Muszak>
+      </Gyakornok>
+    </Gyakornokok>
+    
+    <Rendelesek>
+      <Rendeles id="R001">
+        <Etel>Hamburger</Etel>
+        <Osszeg>3200</Osszeg>
+        <Vendeg VKod="V001">
+          <Nev>Nagy János</Nev>
+          <Eletkor>26</Eletkor>
+          <Cim>
+            <Varos>Miskolc</Varos>
+            <Utca>Kossuth Lajos utca</Utca>
+            <Hazszam>21</Hazszam>
+          </Cim>
+        </Vendeg>
+      </Rendeles>
+      <Rendeles id="R002">
+        <Etel>Lasagne</Etel>
+        <Osszeg>2900</Osszeg>
+        <Vendeg VKod="V002">
+          <Nev>Nagy Béla</Nev>
+          <Eletkor>32</Eletkor>
+          <Cim>
+            <Varos>Debrecen</Varos>
+            <Utca>Arany János utca</Utca>
+            <Hazszam>6</Hazszam>
+          </Cim>
+        </Vendeg>
+      </Rendeles>
+    </Rendelesek>
+    
+  </Etterem>
+</Ettermek>

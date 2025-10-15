@@ -1,0 +1,68 @@
+<ETTERMEK>
+  <ETTEREM EKOD="E001">
+    <NEV>LA_BELLA_CUCINA</NEV>
+    <CIM>
+      <VAROS>Budapest</VAROS>
+      <UTCA>Fő utca</UTCA>
+      <HAZSZAM>12</HAZSZAM>
+      <CSILLAG>5</CSILLAG>
+    </CIM>
+    <FOSZAKACSOK>
+      <FOSZAKACS FKOD="F001">
+        <NEV>Szabó László</NEV>
+        <ELETKOR>45</ELETKOR>
+        <VEGZETTSEG>Mesterszakács</VEGZETTSEG>
+      </FOSZAKACS>
+    </FOSZAKACSOK>
+    <SZAKACSOK>
+      <SZAKACS SKOD="S001">
+        <NEV>Kovács Anna</NEV>
+        <RESZLEG>Pizzéria</RESZLEG>
+        <VEGZETTSEG>OKJ</VEGZETTSEG>
+      </SZAKACS>
+      <SZAKACS SKOD="S002">
+        <NEV>Nagy Péter</NEV>
+        <RESZLEG>Grill</RESZLEG>
+        <VEGZETTSEG>Felsőfok</VEGZETTSEG>
+      </SZAKACS>
+    </SZAKACSOK>
+    <GYAKORNOKOK>
+      <GYAKORNOK GYKOD="G001">
+        <NEV>Barga Dóra</NEV>
+        <GYAKORLAT>
+          <KEZDETE>2025-09-01</KEZDETE>
+          <IDOTARTAM>3</IDOTARTAM>
+        </GYAKORLAT>
+        <MUNKA>Előkészítés</MUNKA>
+      </GYAKORNOK>
+    </GYAKORNOKOK>
+    <RENDELESEK>
+      <RENDELES RID="R001">
+        <ETEL>Carbonara spagetti</ETEL>
+        <OSSZEG>3200</OSSZEG>
+        <VENDEG VKOD="V001">
+          <NEV>Tóth András</NEV>
+          <ELETKOR>29</ELETKOR>
+          <CIM>
+            <VAROS>Debrecen</VAROS>
+            <UTCA>Kossuth Utca</UTCA>
+            <HAZSZAM>45</HAZSZAM>
+          </CIM>
+        </VENDEG>
+      </RENDELES>
+      <RENDELES RID="R002">
+        <ETEL>Lasagne</ETEL>
+        <OSSZEG>2800</OSSZEG>
+        <VENDEG VKOD="V002">
+          <NEV>Kiss Eszter</NEV>
+          <ELETKOR>34</ELETKOR>
+          <CIM>
+            <VAROS>Szeged</VAROS>
+            <UTCA>Arany János utca</UTCA>
+            <HAZSZAM>8</HAZSZAM>
+          </CIM>
+        </VENDEG>
+      </RENDELES>
+    </RENDELESEK>
+  </ETTEREM>
+</ETTERMEK>

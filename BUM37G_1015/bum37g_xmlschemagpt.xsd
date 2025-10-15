@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- SAJATTIPUS DEFINICIOK -->
+  <xs:simpleType name="kodTipus">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]{1}[0-9]{3}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="nevTipus">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="szovegTipus">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="eletkorTipus">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0"/>
+      <xs:maxInclusive value="120"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="osszegtTipus">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- GYOKER -->
+  <xs:element name="ETTERMEK">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ETTEREM" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NEV" type="nevTipus"/>
+              <xs:element name="CIM">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="VAROS" type="nevTipus"/>
+                    <xs:element name="UTCA" type="szovegTipus"/>
+                    <xs:element name="HAZSZAM" type="szovegTipus"/>
+                    <xs:element name="CSILLAG" type="xs:integer"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <!-- RENDELESEK, FOSZAKACSOK stb. külön hasonló szerkezetben -->
+            </xs:sequence>
+            <xs:attribute name="EKOD" type="kodTipus" use="required"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
