@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XY_orarend>
+    <!-- hetfo -->
+    <ora id="h1" tipus="eloadas">
+        <targy>Elektrotechnika-elektronika</targy>
+        <idopont nap="hetfo" tol="08" ig="10" />
+        <helyszin>E3</helyszin>
+        <oktato>Dr. Kovács János</oktato>
+        <szak>Mérnökinformatikus</szak>
+    </ora>
+    <ora id="h2" tipus="eloadas">
+        <targy>Web technológiák 1.</targy>
+        <idopont nap="hetfo" tol="10" ig="12" />
+        <helyszin>E3</helyszin>
+        <oktato>Dr. Kovács János</oktato>
+        <szak>Mérnökinformatikus</szak>
+    </ora>   
+    <ora id="h3" tipus="eloadas">
+        <targy>Mobil programozási alapok</targy>
+        <idopont nap="hetfo" tol="16" ig="18" />
+        <helyszin>B2-105</helyszin>
+        <oktato>Nagy Péter</oktato>
+        <szak>Mérnökinformatikus</szak>
+    </ora>
+    <ora id="h4" tipus="gyakorlat">
+        <targy>Mobil programozási alapok</targy>
+        <idopont nap="hetfo" tol="18" ig="20" />
+        <helyszin>B2-105</helyszin>
+        <oktato>Nagy Péter</oktato>
+        <szak>Mérnökinformatikus</szak>
+    </ora>
+    <!-- kedd -->
+    <ora id="k1" tipus="gyakorlat">
+        <targy>Windows rendszergazda</targy>
+        <idopont nap="kedd" tol="08" ig="10" />
+        <helyszin>C1-301</helyszin>
+        <oktato>Dr. Szabó Anna</oktato>
+        <szak>Mérnökinformatikus</szak>
+    </ora>
+    <ora id="k2" tipus="eloadas">
+        <targy>Mesterséges intelligencia alapok</targy>
+        <idopont nap="kedd" tol="10" ig="12" />
+        <helyszin>B2-105</helyszin>
+        <oktato>Nagy Péter</oktato>
+        <szak>Mérnökinformatikus</szak>
+    </ora>    
+    <ora id="k3" tipus="gyakorlat">
+        <targy>Mesterséges intelligencia alapok</targy>
+        <idopont nap="kedd" tol="12" ig="14" />
+        <helyszin>B2-105</helyszin>
+        <oktato>Nagy Péter</oktato>
+        <szak>Mérnökinformatikus</szak>
+    </ora> 
+    <ora id="k4" tipus="eloadas">
+        <targy>Windows rendszergazda</targy>
+        <idopont nap="kedd" tol="16" ig="18" />
+        <helyszin>C1-301</helyszin>
+        <oktato>Dr. Szabó Anna</oktato>
+        <szak>Mérnökinformatikus</szak>
+    </ora>
+    <!-- szerda -->
+    <ora id="sz1" tipus="eloadas">
+        <targy>Webes adatkezelő környezetek</targy>
+        <idopont nap="szerda" tol="08" ig="10" />
+        <helyszin>C1-301</helyszin>
+        <oktato>Dr. Szabó Anna</oktato>
+        <szak>Mérnökinformatikus</szak>
+    </ora>
+    <ora id="sz2" tipus="gyakorlat">
+        <targy>Webes adatkezelő környezetek</targy>
+        <idopont nap="szerda" tol="10" ig="12" />
+        <helyszin>103</helyszin>
+        <oktato>Bednarik László</oktato>
+        <szak>Mérnökinformatikus</szak>
+    </ora>    
+    <ora id="sz3" tipus="eloadas">
+        <targy>Web technológiák 1.</targy>
+        <idopont nap="szerda" tol="12" ig="14" />
+        <helyszin>101</helyszin>
+        <oktato>Bednarik László</oktato>
+        <szak>Mérnökinformatikus</szak>
+    </ora>
+    <ora id="sz4" tipus="gyakorlat">
+        <targy>Elektrotechnika-elektronika</targy>
+        <idopont nap="szerda" tol="14" ig="16" />
+        <helyszin>A207</helyszin>
+        <oktato>Tamás János</oktato>
+        <szak>Mérnökinformatikus</szak>
+    </ora>
+</XY_orarend>
