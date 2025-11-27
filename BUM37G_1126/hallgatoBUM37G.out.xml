@@ -1,0 +1,42 @@
+<html>
+   <head>
+      <title>Hallgatók adatai - for-each, value-of</title>
+   </head>
+   <body>
+      <h2>Hallgatók adatai - for-each, value-of</h2>
+      <table border="1" cellpadding="5" style="border-collapse: collapse;">
+         <tr style="background-color:#c0e090; font-weight:bold;">
+            <th>ID</th>
+            <th>Vezetéknév</th>
+            <th>Keresztnév</th>
+            <th>Becenév</th>
+            <th>Kor</th>
+            <th>Fizetés</th>
+         </tr>
+         <tr>
+            <td>01</td>
+            <td>Péter</td>
+            <td>Balázs</td>
+            <td>Pébé</td>
+            <td>21</td>
+            <td>320000</td>
+         </tr>
+         <tr>
+            <td>02</td>
+            <td>Zöld</td>
+            <td>Tamás</td>
+            <td>Tomi</td>
+            <td>20</td>
+            <td>500000</td>
+         </tr>
+         <tr>
+            <td>03</td>
+            <td>Rózsa</td>
+            <td>János</td>
+            <td>Jani</td>
+            <td>19</td>
+            <td>550000</td>
+         </tr>
+      </table>
+   </body>
+</html>
