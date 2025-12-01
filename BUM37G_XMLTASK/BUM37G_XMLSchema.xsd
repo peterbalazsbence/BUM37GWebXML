@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>w
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <!-- === Saját egyszerű típusok === -->
+
+    <!-- ID típus: csak számok -->
+    <xsd:simpleType name="IDType">
+        <xsd:restriction base="xsd:integer">
+            <xsd:minInclusive value="1"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <!-- Szoveges mezok -->
+    <xsd:simpleType name="String50">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="50"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <!-- Evszam -->
+    <xsd:simpleType name="YearType">
+        <xsd:restriction base="xsd:gYear"/>
+    </xsd:simpleType>
+
+    <!-- Telefonszam (csak szamok, 11 karakter) -->
+    <xsd:simpleType name="PhoneType">
+        <xsd:restriction base="xsd:string">
+            <xsd:length value="11"/>
+            <xsd:pattern value="[0-9]+"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <!-- === Komplex típusok definiálása === -->
+
+    <!-- Kategoria tipus -->
+    <xsd:complexType name="KategoriaType">
+        <xsd:sequence>
+            <xsd:element name="Nev" type="String50"/>
+            <xsd:element name="Leiras" type="String50"/>
+            <xsd:element name="Prioritas" type="xsd:integer"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- Konyv tipus -->
+    <xsd:complexType name="KonyvType">
+        <xsd:sequence>
+            <xsd:element name="KonyvID" type="IDType"/>
+            <xsd:element name="Cim" type="String50"/>
+            <xsd:element name="Szerzo" type="String50"/>
+            <xsd:element name="KiadasiEv" type="YearType"/>
+            <xsd:element name="Kategoria" type="KategoriaType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- Olvaso tipus -->
+    <xsd:complexType name="OlvasoType">
+        <xsd:sequence>
+            <xsd:element name="OlvasoID" type="IDType"/>
+            <xsd:element name="Nev" type="String50"/>
+            <xsd:element name="Email" type="String50"/>
+            <xsd:element name="Telefonszam" type="PhoneType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- Konyvtaros tipus -->
+    <xsd:complexType name="KonyvtarosType">
+        <xsd:sequence>
+            <xsd:element name="DolgozoID" type="IDType"/>
+            <xsd:element name="Nev" type="String50"/>
+            <xsd:element name="Email" type="String50"/>
+            <xsd:element name="Telefonszam" type="PhoneType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- Kolcsonzes tipus -->
+    <xsd:complexType name="KolcsonzesType">
+        <xsd:sequence>
+            <xsd:element name="KolcsonzesID" type="IDType"/>
+            <xsd:element name="KonyvID" type="IDType"/>
+            <xsd:element name="OlvasoID" type="IDType"/>
+            <xsd:element name="Datum" type="xsd:date"/>
+            <xsd:element name="Hatarido" type="xsd:date"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- Ervenyes tipus -->
+    <xsd:complexType name="ErvenyesType">
+        <xsd:sequence>
+            <xsd:element name="Datumtol" type="xsd:date"/>
+            <xsd:element name="Datumig" type="xsd:date"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- Olvasokartya tipus -->
+    <xsd:complexType name="OlvasokartyaType">
+        <xsd:sequence>
+            <xsd:element name="OlvasoID" type="IDType"/>
+            <xsd:element name="Ar" type="xsd:integer"/>
+            <xsd:element name="Ervenyes" type="ErvenyesType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+    <!-- ==== Gyökérelem definicio === -->
+    <!-- Konyvtar -->
+    <xsd:element name="Konyvtar">
+        <xsd:complexType>
+            <xsd:sequence>
+
+                <!-- Konyvek -->
+                <!-- Ketto vagy tobb peldany engedelyezve -->
+                <xsd:element name="Konyvek">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="Konyv" type="KonyvType" minOccurs="2" maxOccurs="unbounded"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+
+                <!-- Olvasok -->
+                <xsd:element name="Olvasok">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="Olvaso" type="OlvasoType" minOccurs="2" maxOccurs="unbounded"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+
+                <!-- Konyvtarosok -->
+                <xsd:element name="Konyvtarosok">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="Konyvtaros" type="KonyvtarosType" minOccurs="2" maxOccurs="unbounded"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+
+                <!-- Kolcsonzesek -->
+                <xsd:element name="Kolcsonzesek">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="Kolcsonzes" type="KolcsonzesType" minOccurs="2" maxOccurs="unbounded"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+
+                <!-- Olvasokartyak -->
+                <xsd:element name="Olvasokartyak">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="Olvasokartya" type="OlvasokartyaType" minOccurs="2" maxOccurs="unbounded"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>
