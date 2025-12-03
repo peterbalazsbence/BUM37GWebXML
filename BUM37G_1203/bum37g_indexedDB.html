@@ -3,176 +3,263 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BUM37G IndexedDB - Tulajdonos & Autó</title>
+    <title>BUM37G Auto Tulajdonos Kezelő</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
             display: flex;
-            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
         }
 
-        h2 {
-            font-size: 16px;
-            margin-bottom: 15px;
-            color: #333;
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            flex: 1;
+            margin-bottom: 20px;
+        }
+
+        .left, .right {
+            width: 45%;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
         }
 
         input, select, button {
             width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            font-size: 14px;
-            box-sizing: border-box;
-        }
-
-
-        button:hover {
-            background-color: #388e3c; /* Sötétebb zöld hover állapotban */
-            transform: scale(1.05); /* A gomb kissé megnövekszik hoverre */
-        }
-
-        button:active {
-            transform: scale(0.98); /* A gomb kisebbé válik, amikor rákattintanak */
-        }
-
-        button:focus {
-            outline: none; /* Az outline eltávolítása kattintás után */
-        }
-
-        .form-container {
-            width: 45%;
-            margin-right: 5%;
-        }
-
-        .form-container:last-child {
-            margin-right: 0;
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .button-container button {
-            width: 48%;
-        }
-
-        #export-import {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-
-        #export-import button {
-            width: 48%;
-        }
-
-        #export-import input {
-            width: 48%;
             padding: 8px;
+            margin: 5px 0;
         }
 
-        .clear {
-            clear: both;
+        footer {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
         }
 
-        #search input {
-            width: 85%;
+        ul {
+            list-style: none;
+            padding: 0;
         }
 
-        #search button {
-            width: 13%;
-            margin-left: 8px;
+        .footer {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: left;
         }
 
-        .section-title {
-            margin-bottom: 15px;
+        .footer button, .footer input {
+            width: auto;
+            margin-top: 10px;
         }
 
-        label {
-            font-weight: bold;
-            margin-bottom: 5px;
-            display: block;
-            color: #333;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
+        .footer input {
+            width: 250px;
         }
 
     </style>
 </head>
 <body>
+    <div class="container">
+        <div class="left">
+            <h2>Tulajdonosok</h2>
+            <form id="owner-form">
+                <label for="name">Név:</label>
+                <input type="text" id="name" placeholder="Név">
+                <label for="address">Cím:</label>
+                <input type="text" id="address" placeholder="Cím">
+                <label for="phone">Telefon:</label>
+                <input type="text" id="phone" placeholder="Telefon">
+                <button type="submit">Tulajdonos hozzáadása</button>
+            </form>
+            <h3>Összes tulajdonos:</h3>
+            <ul id="owner-list"></ul>
+        </div>
 
-<div class="form-container">
-    <h2 class="section-title">Tulajdonos hozzáadása</h2>
-    <form id="addOwnerForm">
-        <div class="input-group">
-            <label for="name">Név</label>
-            <input type="text" id="name" placeholder="Név" required>
+        <div class="right">
+            <h2>Autók</h2>
+            <form id="car-form">
+                <label for="reg-number">Rendszám:</label>
+                <input type="text" id="reg-number" placeholder="Rendszám">
+                <label for="model">Típus:</label>
+                <input type="text" id="model" placeholder="Típus">
+                <label for="color">Szín:</label>
+                <input type="text" id="color" placeholder="Szín">
+                <label for="age">Kor:</label>
+                <input type="number" id="age" placeholder="Kor">
+                <label for="price">Ár:</label>
+                <input type="number" id="price" placeholder="Ár">
+                <label for="owner-select">Tulaj:</label>
+                <select id="owner-select"></select>
+                <button type="submit">Autó hozzáadása</button>
+            </form>
+            <h3>Autók listája:</h3>
+            <ul id="car-list"></ul>
         </div>
-        <div class="input-group">
-            <label for="address">Cím</label>
-            <input type="text" id="address" placeholder="Cím" required>
-        </div>
-        <div class="input-group">
-            <label for="phone">Telefon</label>
-            <input type="text" id="phone" placeholder="Telefon" required>
-        </div>
-        <button type="submit">Tulajdonos hozzáadása</button>
-    </form>
-    <div class="button-container">
-        <button onclick="listOwners()">Összes tulajdonos megjelenítése</button>
     </div>
-</div>
-
-<div class="form-container">
-    <h2 class="section-title">Autó hozzáadása</h2>
-    <form id="addCarForm">
-        <div class="input-group">
-            <label for="licensePlate">Rendszám</label>
-            <input type="text" id="licensePlate" placeholder="ABC 123" required>
-        </div>
-        <div class="input-group">
-            <label for="brand">Márka</label>
-            <input type="text" id="brand" placeholder="Márka" required>
-        </div>
-        <div class="input-group">
-            <label for="model">Típus</label>
-            <input type="text" id="model" placeholder="Típus" required>
-        </div>
-        <div class="input-group">
-            <label for="year">Év</label>
-            <input type="number" id="year" placeholder="Év" required>
-        </div>
-        <div class="input-group">
-            <label for="owner-select">Tulajdonos</label>
-            <select id="owner-select"></select>
-        </div>
-        <button type="submit">Autó hozzáadása</button>
-    </form>
-</div>
-
-<div id="search">
-    <h3 class="section-title">Autók keresése</h3>
-    <div style="display: flex;">
-        <input type="text" id="car-search" placeholder="Keresés...">
-        <button onclick="searchCars()">Keresés</button>
+    
+    <div class="footer">
+        <h3>Adatok mentése és betöltése</h3>
+        <button id="export-btn">Exportálás JSON fájlba</button>
+        <input type="file" id="import-file" />
+        <button id="import-btn">Importálás JSON-ból</button>
     </div>
-</div>
+    
+    <script>
+        let db;
+        const request = indexedDB.open("AutoTulajDB_v1", 1);
+        request.onupgradeneeded = (event) => {
+            db = event.target.result;
+            const ownerStore = db.createObjectStore("owners", { keyPath: "id", autoIncrement: true });
+            const carStore = db.createObjectStore("cars", { keyPath: "id", autoIncrement: true });
+            carStore.createIndex("ownerIndex", "ownerId", { unique: false });
+        };
 
-<div id="export-import">
-    <button onclick="exportData()">Exportálás JSON fájlba</button>
-    <input type="file" id="import-file" onchange="importData(event)">
-    <button onclick="importDataFromFile()">Importálás JSON fájlból</button>
-</div>
+        document.getElementById("owner-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const name = document.getElementById("name").value;
+            const address = document.getElementById("address").value;
+            const phone = document.getElementById("phone").value;
+            const newOwner = { name, address, phone };
+            
+            const transaction = db.transaction(["owners"], "readwrite");
+            const ownerStore = transaction.objectStore("owners");
+            ownerStore.add(newOwner);
+            
+            transaction.oncomplete = () => {
+                loadOwners();
+                document.getElementById("owner-form").reset();
+            };
+        });
 
-<script>
-// JavaScript kód itt marad
-</script>
+        document.getElementById("car-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const regNumber = document.getElementById("reg-number").value;
+            const model = document.getElementById("model").value;
+            const color = document.getElementById("color").value;
+            const age = document.getElementById("age").value;
+            const price = document.getElementById("price").value;
+            const ownerId = document.getElementById("owner-select").value;
+            
+            const newCar = { regNumber, model, color, age, price, ownerId };
+            
+            const transaction = db.transaction(["cars"], "readwrite");
+            const carStore = transaction.objectStore("cars");
+            carStore.add(newCar);
+            
+            transaction.oncomplete = () => {
+                loadCars();
+                document.getElementById("car-form").reset();
+            };
+        });
 
+        function loadOwners() {
+            const transaction = db.transaction(["owners"], "readonly");
+            const ownerStore = transaction.objectStore("owners");
+            const request = ownerStore.getAll();
+            
+            request.onsuccess = () => {
+                const owners = request.result;
+                const ownerList = document.getElementById("owner-list");
+                const ownerSelect = document.getElementById("owner-select");
+                
+                ownerList.innerHTML = "";
+                ownerSelect.innerHTML = "";
+                
+                owners.forEach(owner => {
+                    const li = document.createElement("li");
+                    li.textContent = `${owner.name} (${owner.phone})`;
+                    ownerList.appendChild(li);
+                    
+                    const option = document.createElement("option");
+                    option.value = owner.id;
+                    option.textContent = owner.name;
+                    ownerSelect.appendChild(option);
+                });
+            };
+        }
+
+        function loadCars() {
+            const transaction = db.transaction(["cars"], "readonly");
+            const carStore = transaction.objectStore("cars");
+            const request = carStore.getAll();
+            
+            request.onsuccess = () => {
+                const cars = request.result;
+                const carList = document.getElementById("car-list");
+                
+                carList.innerHTML = "";
+                cars.forEach(car => {
+                    const li = document.createElement("li");
+                    li.textContent = `${car.regNumber} - ${car.model} (${car.color})`;
+                    carList.appendChild(li);
+                });
+            };
+        }
+
+        document.getElementById("export-btn").addEventListener("click", () => {
+            const transaction = db.transaction(["owners", "cars"], "readonly");
+            const ownerStore = transaction.objectStore("owners");
+            const carStore = transaction.objectStore("cars");
+            
+            const requestOwners = ownerStore.getAll();
+            const requestCars = carStore.getAll();
+            
+            requestOwners.onsuccess = () => {
+                requestCars.onsuccess = () => {
+                    const owners = requestOwners.result;
+                    const cars = requestCars.result;
+                    const data = { owners, cars };
+                    const blob = new Blob([JSON.stringify(data)], { type: "application/json" });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement("a");
+                    a.href = url;
+                    a.download = "auto_data.json";
+                    a.click();
+                };
+            };
+        });
+
+        document.getElementById("import-btn").addEventListener("click", () => {
+            const fileInput = document.getElementById("import-file");
+            const file = fileInput.files[0];
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const data = JSON.parse(e.target.result);
+                    
+                    const transaction = db.transaction(["owners", "cars"], "readwrite");
+                    const ownerStore = transaction.objectStore("owners");
+                    const carStore = transaction.objectStore("cars");
+                    
+                    data.owners.forEach(owner => ownerStore.add(owner));
+                    data.cars.forEach(car => carStore.add(car));
+                    
+                    transaction.oncomplete = () => {
+                        loadOwners();
+                        loadCars();
+                    };
+                };
+                reader.readAsText(file);
+            }
+        });
+
+        loadOwners();
+        loadCars();
+    </script>
 </body>
 </html>
