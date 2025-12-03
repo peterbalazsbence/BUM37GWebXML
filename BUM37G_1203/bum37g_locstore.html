@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>BUM37G Hallgatók</title>
+<style>
+    body { font-family: Arial; background:#f4f4f4; padding:20px;}
+    h2 { margin-top:30px; }
+    .container { background:white; padding:20px; border-radius:5px; width:700px; }
+    input, select { padding:5px; margin:5px 0; width:200px; }
+    button { padding:6px 12px; margin:3px; border:0; cursor:pointer; }
+    .btn-green { background:#4CAF50; color:white; }
+    .btn-blue { background:#1E90FF; color:white; }
+    .btn-red { background:#e74c3c; color:white; }
+    table { width:100%; border-collapse:collapse; margin-top:20px; background:white; }
+    th, td { border:1px solid #ddd; padding:8px; }
+    th { background:#eee; }
+</style>
+</head>
+<body>
+
+<h1>NEPTUNKOD Hallgatók</h1>
+
+<div class="container">
+    <h3>Új hallgató hozzáadása</h3>
+
+    <label>Név:</label><br>
+    <input id="nev"><br>
+
+    <label>Évfolyam:</label><br>
+    <input id="evf" type="number" min="1" max="5"><br>
+
+    <label>Szak:</label><br>
+    <input id="szak"><br>
+
+    <label>Email:</label><br>
+    <input id="email"><br>
+
+    <label>NEPTUN kód:</label><br>
+    <input id="neptun"><br>
+
+    <button class="btn-green" onclick="addStudent()">Mentés</button>
+</div>
+
+<div class="container" style="margin-top:20px;">
+    <h3>Keresés:</h3>
+    <input id="search" placeholder="név, évfolyam, szak, email, neptun" onkeyup="renderTable()">
+
+    <h3>Rendezés:</h3>
+    <select id="sort" onchange="renderTable()">
+        <option value="">Nincs rendezés</option>
+        <option value="nev">Név szerint</option>
+        <option value="evf">Évfolyam szerint</option>
+    </select>
+
+    <h3>Export / Import JSON</h3>
+    <button class="btn-blue" onclick="exportJSON()">Export JSON</button><br><br>
+
+    <input type="file" id="jsonFile">
+    <button onclick="importJSON()">Fájl importálása</button>
+</div>
+
+<h2>Hallgatók listája</h2>
+<table id="table">
+    <thead>
+        <tr>
+            <th>Név</th><th>Évfolyam</th><th>Szak</th><th>Email</th><th>NEPTUN</th><th>Műveletek</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script>
+
+function loadStudents() {
+    return JSON.parse(localStorage.getItem("hallgatok") || "[]");
+}
+function saveStudents(list) {
+    localStorage.setItem("hallgatok", JSON.stringify(list));
+}
+
+
+function addStudent() {
+    let s = loadStudents();
+    s.push({
+        nev: document.getElementById("nev").value,
+        evf: document.getElementById("evf").value,
+        szak: document.getElementById("szak").value,
+        email: document.getElementById("email").value,
+        neptun: document.getElementById("neptun").value
+    });
+    saveStudents(s);
+    renderTable();
+}
+
+
+function deleteStudent(i) {
+    let s = loadStudents();
+    s.splice(i, 1);
+    saveStudents(s);
+    renderTable();
+}
+
+
+function editStudent(i) {
+    let s = loadStudents()[i];
+    document.getElementById("nev").value = s.nev;
+    document.getElementById("evf").value = s.evf;
+    document.getElementById("szak").value = s.szak;
+    document.getElementById("email").value = s.email;
+    document.getElementById("neptun").value = s.neptun;
+
+    deleteStudent(i);
+}
+
+
+function exportJSON() {
+    let data = JSON.stringify(loadStudents(), null, 4);
+    let blob = new Blob([data], { type: "application/json" });
+    let url = URL.createObjectURL(blob);
+
+    let a = document.createElement("a");
+    a.href = url;
+    a.download = "hallgatok.json";
+    a.click();
+}
+
+
+function importJSON() {
+    let file = document.getElementById("jsonFile").files[0];
+    if (!file) return alert("Nincs kiválasztott fájl!");
+
+    let reader = new FileReader();
+    reader.onload = () => {
+        saveStudents(JSON.parse(reader.result));
+        renderTable();
+    };
+    reader.readAsText(file);
+}
+
+
+function renderTable() {
+    let s = loadStudents();
+    let search = document.getElementById("search").value.toLowerCase();
+
+    s = s.filter(x =>
+        x.nev.toLowerCase().includes(search) ||
+        x.evf.toString().includes(search) ||
+        x.szak.toLowerCase().includes(search) ||
+        x.email.toLowerCase().includes(search) ||
+        x.neptun.toLowerCase().includes(search)
+    );
+
+    let sort = document.getElementById("sort").value;
+    if (sort === "nev") s.sort((a,b)=>a.nev.localeCompare(b.nev));
+    if (sort === "evf") s.sort((a,b)=>a.evf - b.evf);
+
+    let tbody = document.querySelector("#table tbody");
+    tbody.innerHTML = "";
+
+    s.forEach((x, i) => {
+        let row = `<tr>
+            <td>${x.nev}</td>
+            <td>${x.evf}</td>
+            <td>${x.szak}</td>
+            <td>${x.email}</td>
+            <td>${x.neptun}</td>
+            <td>
+                <button class="btn-blue" onclick="editStudent(${i})">Módosít</button>
+                <button class="btn-red" onclick="deleteStudent(${i})">Töröl</button>
+            </td>
+        </tr>`;
+        tbody.innerHTML += row;
+    });
+}
+
+renderTable();
+</script>
+
+</body>
+</html>

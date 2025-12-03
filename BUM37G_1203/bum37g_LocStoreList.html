@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>BUM37G Órarend JSON</title>
+<style>
+    body { font-family: Arial; background:#f4f4f4; padding:20px; }
+    .box { width:700px; background:white; padding:20px; border-radius:5px; }
+    input, select { padding:5px; margin:5px 0; }
+    button { padding:6px 12px; margin-left:10px; }
+    .lesson { border:1px solid #ddd; padding:15px; margin-top:15px; border-radius:5px; }
+</style>
+</head>
+<body>
+
+<h1>BUM37G Órarend JSON</h1>
+
+<div class="box">
+    <input type="file" id="fileInput">
+    <button onclick="loadJSON()">LocalStorage betöltése</button>
+
+    <div>
+        <label>Keresés tárgy szerint:</label><br>
+        <input id="search" onkeyup="renderList()">
+    </div>
+
+    <div id="list"></div>
+</div>
+
+<script>
+function loadJSON() {
+    const file = document.getElementById("fileInput").files[0];
+    if (!file) return alert("Válassz ki egy JSON fájlt!");
+
+    const reader = new FileReader();
+    reader.onload = () => {
+        localStorage.setItem("orarend", reader.result);
+        alert("Órarend mentve LocalStorage-ba!");
+        renderList();
+    };
+    reader.readAsText(file);
+}
+
+function renderList() {
+    const container = document.getElementById("list");
+    let data = JSON.parse(localStorage.getItem("orarend") || "[]");
+
+    const search = document.getElementById("search").value.toLowerCase();
+    data = data.filter(x => x.targy.toLowerCase().includes(search));
+
+    container.innerHTML = "";
+
+    data.forEach(item => {
+        container.innerHTML += `
+            <div class="lesson">
+                <b>${item.targy}</b><br>
+                Nap: ${item.nap}<br>
+                Idő: ${item.tol} - ${item.ig}<br>
+                Helyszín: ${item.helyszin}<br>
+                Oktató: ${item.oktato}<br>
+                Szak: ${item.szak}
+            </div>
+        `;
+    });
+}
+</script>
+
+</body>
+</html>

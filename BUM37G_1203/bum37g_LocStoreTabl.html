@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>BUM37G Órarend JSON</title>
+<style>
+    body { font-family: Arial; background:#f4f4f4; padding:20px; }
+    table { width:900px; background:white; border-collapse:collapse; margin-top:20px; }
+    th, td { border:1px solid #ccc; padding:8px; }
+    th { background:#eee; }
+    input { padding:5px; margin:5px 0; }
+    button { padding:6px 12px; margin-left:10px; }
+</style>
+</head>
+<body>
+
+<h1>BUM37G Órarend JSON</h1>
+
+<input type="file" id="fileInput">
+<button onclick="loadJSON()">LocalStorage betöltése</button>
+
+<table>
+    <thead>
+        <tr>
+            <th>Tárgy</th>
+            <th>Nap</th>
+            <th>Tól</th>
+            <th>Ig</th>
+            <th>Helyszín</th>
+            <th>Oktató</th>
+            <th>Szak</th>
+        </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+</table>
+
+<script>
+function loadJSON() {
+    const file = document.getElementById("fileInput").files[0];
+    if (!file) return alert("Nincs kiválasztott fájl!");
+
+    const reader = new FileReader();
+    reader.onload = () => {
+        localStorage.setItem("orarend", reader.result);
+        alert("Órarend elmentve LocalStorage-ba!");
+        renderTable();
+    };
+    reader.readAsText(file);
+}
+
+function renderTable() {
+    const tbody = document.getElementById("tbody");
+    let data = JSON.parse(localStorage.getItem("orarend") || "[]");
+
+    tbody.innerHTML = "";
+
+    data.forEach(item => {
+        tbody.innerHTML += `
+            <tr>
+                <td>${item.targy}</td>
+                <td>${item.nap}</td>
+                <td>${item.tol}</td>
+                <td>${item.ig}</td>
+                <td>${item.helyszin}</td>
+                <td>${item.oktato}</td>
+                <td>${item.szak}</td>
+            </tr>
+        `;
+    });
+}
+
+renderTable();
+</script>
+
+</body>
+</html>

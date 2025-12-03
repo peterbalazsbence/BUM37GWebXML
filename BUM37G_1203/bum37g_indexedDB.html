@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUM37G IndexedDB - Tulajdonos & Autó</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        h2 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+
+        button:hover {
+            background-color: #388e3c; /* Sötétebb zöld hover állapotban */
+            transform: scale(1.05); /* A gomb kissé megnövekszik hoverre */
+        }
+
+        button:active {
+            transform: scale(0.98); /* A gomb kisebbé válik, amikor rákattintanak */
+        }
+
+        button:focus {
+            outline: none; /* Az outline eltávolítása kattintás után */
+        }
+
+        .form-container {
+            width: 45%;
+            margin-right: 5%;
+        }
+
+        .form-container:last-child {
+            margin-right: 0;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button-container button {
+            width: 48%;
+        }
+
+        #export-import {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        #export-import button {
+            width: 48%;
+        }
+
+        #export-import input {
+            width: 48%;
+            padding: 8px;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        #search input {
+            width: 85%;
+        }
+
+        #search button {
+            width: 13%;
+            margin-left: 8px;
+        }
+
+        .section-title {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            color: #333;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2 class="section-title">Tulajdonos hozzáadása</h2>
+    <form id="addOwnerForm">
+        <div class="input-group">
+            <label for="name">Név</label>
+            <input type="text" id="name" placeholder="Név" required>
+        </div>
+        <div class="input-group">
+            <label for="address">Cím</label>
+            <input type="text" id="address" placeholder="Cím" required>
+        </div>
+        <div class="input-group">
+            <label for="phone">Telefon</label>
+            <input type="text" id="phone" placeholder="Telefon" required>
+        </div>
+        <button type="submit">Tulajdonos hozzáadása</button>
+    </form>
+    <div class="button-container">
+        <button onclick="listOwners()">Összes tulajdonos megjelenítése</button>
+    </div>
+</div>
+
+<div class="form-container">
+    <h2 class="section-title">Autó hozzáadása</h2>
+    <form id="addCarForm">
+        <div class="input-group">
+            <label for="licensePlate">Rendszám</label>
+            <input type="text" id="licensePlate" placeholder="ABC 123" required>
+        </div>
+        <div class="input-group">
+            <label for="brand">Márka</label>
+            <input type="text" id="brand" placeholder="Márka" required>
+        </div>
+        <div class="input-group">
+            <label for="model">Típus</label>
+            <input type="text" id="model" placeholder="Típus" required>
+        </div>
+        <div class="input-group">
+            <label for="year">Év</label>
+            <input type="number" id="year" placeholder="Év" required>
+        </div>
+        <div class="input-group">
+            <label for="owner-select">Tulajdonos</label>
+            <select id="owner-select"></select>
+        </div>
+        <button type="submit">Autó hozzáadása</button>
+    </form>
+</div>
+
+<div id="search">
+    <h3 class="section-title">Autók keresése</h3>
+    <div style="display: flex;">
+        <input type="text" id="car-search" placeholder="Keresés...">
+        <button onclick="searchCars()">Keresés</button>
+    </div>
+</div>
+
+<div id="export-import">
+    <button onclick="exportData()">Exportálás JSON fájlba</button>
+    <input type="file" id="import-file" onchange="importData(event)">
+    <button onclick="importDataFromFile()">Importálás JSON fájlból</button>
+</div>
+
+<script>
+// JavaScript kód itt marad
+</script>
+
+</body>
+</html>
