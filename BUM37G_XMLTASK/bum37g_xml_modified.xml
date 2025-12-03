@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Konyvtar>
+      
+  <!-- Konyvek listaja -->
+      
+  <Konyvek>
+            
+    <!-- Elso konyv -->
+            
+    <Konyv>
+                  
+      <KonyvID>1</KonyvID>
+                  
+      <Cim>A Gyuruk Ura</Cim>
+                  
+      <Szerzo>J.R.R. Tolkien</Szerzo>
+                  
+      <KiadasiEv>1954</KiadasiEv>
+                  
+      <!-- Kapcsolt kategoria -->
+                  
+      <Kategoria>
+                        
+        <Nev>Fantasy</Nev>
+                        
+        <Leiras>Kozepfold tortenete</Leiras>
+                        
+        <Prioritas>1</Prioritas>
+                    
+      </Kategoria>
+              
+    </Konyv>
+            
+    <!-- Masodik konyv -->
+            
+    <Konyv>
+                  
+      <KonyvID>2</KonyvID>
+                  
+      <Cim>A Paldini Rejtely</Cim>
+                  
+      <Szerzo>Mate Bence</Szerzo>
+                  
+      <KiadasiEv>2021</KiadasiEv>
+                  
+      <Kategoria>
+                        
+        <Nev>Krimi</Nev>
+                        
+        <Leiras>Detektiv tortenet</Leiras>
+                        
+        <Prioritas>2</Prioritas>
+                    
+      </Kategoria>
+              
+    </Konyv>
+        
+    <Konyv>
+      <KonyvID>3</KonyvID>
+      <Cim>XML programozas</Cim>
+      <Szerzo>Bum Developer</Szerzo>
+      <KiadasiEv>2024</KiadasiEv>
+      <Kategoria>
+        <Nev>Szakirodalom</Nev>
+        <Leiras>XML es DOM</Leiras>
+        <Prioritas>3</Prioritas>
+      </Kategoria>
+    </Konyv>
+  </Konyvek>
+      
+  <!-- Olvasok -->
+      
+  <Olvasok>
+            
+    <!-- Elso olvaso -->
+            
+    <Olvaso>
+                  
+      <OlvasoID>100</OlvasoID>
+                  
+      <Nev>Kovacs Anna</Nev>
+                  
+      <Email>uj.anna@example.com</Email>
+                  
+      <Telefonszam>06201234567</Telefonszam>
+              
+    </Olvaso>
+            
+    <!-- Masodik olvaso -->
+            
+    <Olvaso>
+                  
+      <OlvasoID>101</OlvasoID>
+                  
+      <Nev>Nagy Peter</Nev>
+                  
+      <Email>peter@example.com</Email>
+                  
+      <Telefonszam>06203334444</Telefonszam>
+              
+    </Olvaso>
+        
+  </Olvasok>
+      
+  <!-- Konyvtarosok -->
+      
+  <Konyvtarosok>
+            
+    <!-- Elso konyvtaros -->
+            
+    <Konyvtaros>
+                  
+      <DolgozoID>500</DolgozoID>
+                  
+      <Nev>Horvath Zoltan</Nev>
+                  
+      <Email>zoltan@example.com</Email>
+                  
+      <Telefonszam>06207778888</Telefonszam>
+              
+    </Konyvtaros>
+            
+    <!-- Masodik konyvtaros -->
+            
+    <Konyvtaros>
+                  
+      <DolgozoID>501</DolgozoID>
+                  
+      <Nev>Kiss Csilla</Nev>
+                  
+      <Email>csilla@example.com</Email>
+                  
+      <Telefonszam>06205556666</Telefonszam>
+              
+    </Konyvtaros>
+        
+  </Konyvtarosok>
+      
+  <!-- Kolcsonzesek -->
+      
+  <Kolcsonzesek>
+            
+    <!-- Elso kolcsonzes -->
+            
+    <Kolcsonzes>
+                  
+      <KolcsonzesID>9000</KolcsonzesID>
+                  
+      <KonyvID>1</KonyvID>
+       
+      <!-- idegenkulcs a Konyv entitasbol -->
+                  
+      <OlvasoID>100</OlvasoID>
+       
+      <!-- idegenkulcs az Olvaso entitasbol -->
+                  
+      <Datum>2024-01-05</Datum>
+                  
+      <Hatarido>2024-03-01</Hatarido>
+              
+    </Kolcsonzes>
+            
+    <!-- Masodik kolcsonzes -->
+            
+
+    
+  </Kolcsonzesek>
+      
+  <!-- Olvasokartyak -->
+      
+  <Olvasokartyak>
+            
+    <!-- Elso kartya -->
+            
+    <Olvasokartya>
+                  
+      <OlvasoID>100</OlvasoID>
+       
+      <!-- kapcsolat az Olvasoval -->
+                  
+      <Ar>3500</Ar>
+                  
+      <Ervenyes>
+                        
+        <Datumtol>2024-01-01</Datumtol>
+                        
+        <Datumig>2025-01-01</Datumig>
+                    
+      </Ervenyes>
+              
+    </Olvasokartya>
+            
+    <!-- Masodik kartya -->
+            
+    <Olvasokartya>
+                  
+      <OlvasoID>101</OlvasoID>
+                  
+      <Ar>3500</Ar>
+                  
+      <Ervenyes>
+                        
+        <Datumtol>2024-01-01</Datumtol>
+                        
+        <Datumig>2025-01-01</Datumig>
+                    
+      </Ervenyes>
+              
+    </Olvasokartya>
+        
+  </Olvasokartyak>
+  
+</Konyvtar>
