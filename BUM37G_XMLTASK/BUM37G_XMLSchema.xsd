@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>w
+<?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
 
     <!-- === Saját egyszerű típusok === -->
@@ -22,7 +22,7 @@
         <xsd:restriction base="xsd:gYear"/>
     </xsd:simpleType>
 
-    <!-- Telefonszam (csak szamok, 11 karakter) -->
+    <!-- Telefonszam -->
     <xsd:simpleType name="PhoneType">
         <xsd:restriction base="xsd:string">
             <xsd:length value="11"/>
@@ -100,15 +100,12 @@
         </xsd:sequence>
     </xsd:complexType>
 
-
     <!-- ==== Gyökérelem definicio === -->
-    <!-- Konyvtar -->
     <xsd:element name="Konyvtar">
         <xsd:complexType>
             <xsd:sequence>
 
                 <!-- Konyvek -->
-                <!-- Ketto vagy tobb peldany engedelyezve -->
                 <xsd:element name="Konyvek">
                     <xsd:complexType>
                         <xsd:sequence>
@@ -154,6 +151,45 @@
                 </xsd:element>
 
             </xsd:sequence>
+
+            <!-- ====  kulcsok és kulcsref ==== -->
+
+            <!-- könyv id -->
+            <xsd:key name="BookKey">
+                <xsd:selector xpath="Konyvek/Konyv"/>
+                <xsd:field xpath="KonyvID"/>
+            </xsd:key>
+
+            <!-- olvaso id -->
+            <xsd:key name="ReaderKey">
+                <xsd:selector xpath="Olvasok/Olvaso"/>
+                <xsd:field xpath="OlvasoID"/>
+            </xsd:key>
+
+            <!-- kölcs id -->
+            <xsd:key name="LoanKey">
+                <xsd:selector xpath="Kolcsonzesek/Kolcsonzes"/>
+                <xsd:field xpath="KolcsonzesID"/>
+            </xsd:key>
+
+            <!-- kölcs - könyv -->
+            <xsd:keyref name="LoanToBook" refer="BookKey">
+                <xsd:selector xpath="Kolcsonzesek/Kolcsonzes"/>
+                <xsd:field xpath="KonyvID"/>
+            </xsd:keyref>
+
+            <!-- kölcs -olvas  -->
+            <xsd:keyref name="LoanToReader" refer="ReaderKey">
+                <xsd:selector xpath="Kolcsonzesek/Kolcsonzes"/>
+                <xsd:field xpath="OlvasoID"/>
+            </xsd:keyref>
+
+            <!-- olvasokartya - olvas -->
+            <xsd:keyref name="CardToReader" refer="ReaderKey">
+                <xsd:selector xpath="Olvasokartyak/Olvasokartya"/>
+                <xsd:field xpath="OlvasoID"/>
+            </xsd:keyref>
+
         </xsd:complexType>
     </xsd:element>
 
